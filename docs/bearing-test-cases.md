@@ -32,9 +32,34 @@ explicit unresolved question.
 
 ## First-task ranking
 
-The published repository contains focused documentation and test issues,
-broader ambiguous work, and issues involving authentication and production
-deployment. Bearing should recommend focused work and exclude high-risk work.
+The published repository contains these canonical test cases:
+
+| Issue | Expected result | Reason |
+| --- | --- | --- |
+| [#1 Correct the stale bootstrap command](https://github.com/eltyagi/bearing-sample-service/issues/1) | Recommended | Focused documentation change with acceptance criteria and validation |
+| [#2 Add a health endpoint request test](https://github.com/eltyagi/bearing-sample-service/issues/2) | Recommended | Focused test-only change with explicit validation |
+| [#3 Refactor catalog storage](https://github.com/eltyagi/bearing-sample-service/issues/3) | Review | Broad scope, unclear test plan, and unresolved dependencies |
+| [#4 Add authentication and authorization](https://github.com/eltyagi/bearing-sample-service/issues/4) | Excluded | Authentication and security-sensitive scope |
+| [#5 Deploy to production](https://github.com/eltyagi/bearing-sample-service/issues/5) | Excluded | Production-critical deployment scope |
+
+The expected ordering is based on the issue content and repository signals,
+not fixed timestamps or hard-coded scores.
+
+## Verified baseline
+
+Bearing's current analyzers should report:
+
+- Repository identity `eltyagi/bearing-sample-service`
+- Application component from the root `package.json`
+- Source root `src` and test root `test`
+- CI workflow and CODEOWNERS components
+- An Express startup flow in `src/app.ts`
+- A high-confidence mounted route flow for `GET /api/services/:slug`
+- npm setup plans for install, build, lint, and test
+
+The startup flow may explicitly note that the listener is started in another
+file. The mounted route flow may note that dynamic middleware and handler calls
+cannot be fully resolved statically.
 
 ## Suggested prompt
 
